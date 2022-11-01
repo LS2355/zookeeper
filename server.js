@@ -4,11 +4,15 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const fs = require('fs');
 const path = require('path');   
+const { allowedNodeEnvironmentFlags } = require('process');
 
 //parse incoming string or array data
 app.use(express.urlencoded({extended: true }));
 //parse incoming json data
 app.use(express.json());
+//
+app.use(express.static('public'));
+
 
 
 
@@ -122,6 +126,30 @@ app.get('/api/animals/:id', (req, res) => {
 
 
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+
+
+app.get('/animals', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
+
+
+app.get('/zookeepers', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+})
+
+
+
+app.get('*', (req, res)=> {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+
+
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
 });
@@ -136,8 +164,8 @@ app.post('/api/animals', (req, res) => {
     if (!validateAnimal(req.body)) {
         res.status(400).send('The animal is not properly formatted.')
     }else {
-        const animal = createNewAnimal(re.0000000000000000077777777777774077777q.body, animals);
-1        res.json(animal);
+        const animal = createNewAnimal(req.body, animals);
+        res.json(animal);
     }
 }); 
 
