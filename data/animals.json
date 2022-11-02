@@ -101,11 +101,12 @@
       ]
     },
     {
-      "name": "Larry",
-      "species": "brain dead",
-      "diet": "omnivore",
+      "name": "pedro",
+      "species": "Penguin",
+      "diet": "carnivore",
       "personalityTraits": [
-        "hungry"
+        "hungry",
+        "anxious"
       ],
       "id": "10"
     }
